@@ -16,6 +16,7 @@ EXAMPLE: container: $('#myParent') || 'myParent'
 EXAMPLE: ['offensive', 'defense', 'stamina', 'technical', 'phisical', 'fairplay']
 
 - max (graduation between 0 and max): integer
+ if max is not specified, by default it will be set with the array's color length
 
 - colors (colors of the diagram steps): Array of strings
 EXAMPLE: ["#be1623", "#e6342a", "#ea4e1b", "#f29200", "#f9b234", "#f0f0f0"]
