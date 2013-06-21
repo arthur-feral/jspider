@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	
+	<script type="text/javascript" src="raphael-min.js"></script>
+	<script type="text/javascript" src="jSpider.js"></script>
+	<style type="text/css">
+		.container{
+			width: 400px;
+			height: 400px;
+			background-color: #43557E;
+		}
+	</style>
+<title>jSpider example</title>
+
+</head>
+	<body id="body">
+		<div id="example1" class="container"></div>
+		<div id="example2" class="container"></div>
+	</body>
+	<script type="text/javascript">
+		var myDiagram1 = new jSpider({
+			container: $('#example1'),
+			labels: ['attaque', 'défense', 'endurance', 'technique', 'physique', 'fairplay'],
+			max: 5,
+			colors: ["#be1623", "#e6342a", "#ea4e1b", "#f29200", "#f9b234", "#f0f0f0"],
+		});
+		var myDiagram2 = new jSpider({
+			container: $('#example2'),
+			labels: ['attaque', 'défense', 'endurance', 'technique', 'physique', 'fairplay'],
+			max: 5,
+			colors: ["#be1623", "#e6342a", "#ea4e1b", "#f29200", "#f9b234", "#f0f0f0"],
+		});
+		myDiagram1.read([1,2,2,4,1,4]);
+		myDiagram2.startEdition();
+	</script>
+</html>
