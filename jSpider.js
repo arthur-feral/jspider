@@ -9,7 +9,7 @@
 
 (function (window) {
 
-  jSpider = function(params){
+	jSpider = function(params){
 		this.initialize(params);
 	}
 
@@ -58,7 +58,6 @@
 
 // constructor:
 	jsp.initialize = function (params) {
-		this._readonly     = params.readonly == undefined ? true : params.readonly;
 		this._container    = typeof params.container == "string" ? $('#'+params.container) : params.container;
 		this._dom          = this._container[0];
 		this._labels       = params.labels;
@@ -110,7 +109,7 @@
 		var l = values.length;
 		for(var i = 0 ; i < l ; i++){
 			coords.push({
-				x: this._x + (this._r * values[i]) *Math.cos(Math.PI/2+2*Math.PI*i/l),
+				x: this._x + (this._r * values[i]) * Math.cos(Math.PI/2+2*Math.PI*i/l),
 				y: this._y + (this._r * values[i]) * Math.sin(Math.PI/2+2*Math.PI*i/l)
 			});
 		}
@@ -118,10 +117,11 @@
 	};
 	jsp.drawBG = function(){
 		var l = this._labels.length;
-		for(var i = 0 ; i < 5 ; i++){
+		var l2 = this._stepColor.length;
+		for(var i = 0 ; i < l2 ; i++){
 			var a = [];
 			for(var j = 0 ; j < l ; j++){
-				a.push((5-i) / 5);
+				a.push((l2-i) / l2);
 			}
 			var coords = this.valuesToCoords(a);
 			this.generatePolygone({
