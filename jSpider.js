@@ -16,6 +16,7 @@
 	var jsp = jSpider.prototype;
 
 // static public properties:
+	// jSpider.path = 'img/tiles/';
 	
 // public properties:
 	jsp._readonly;
@@ -23,8 +24,8 @@
 	jsp._container;
 
 	jsp._labels;
-	jsp._labelsId;
-	jsp._values;
+	jsp._labelsId = new Array();
+	jsp._values = new Array();
 
 	jsp._buttons = new Array();
 	jsp._radiusButton;
@@ -60,11 +61,9 @@
 		this._container    = typeof params.container == "string" ? $('#'+params.container) : params.container;
 		this._dom          = this._container[0];
 		this._labels       = params.labels;
-		this._values       = params.values != undefined ? params.values : [2,2,2,2,2,2];
-		this._labelsId     = params.labelsID;
 		this._min          = 0;
-		this._max          = params.max;
 		this._stepColor    = params.colors;
+		this._max          = params.max || params.colors.length;
 		this._w            = this._container.width();
 		this._h            = this._container.height();
 		this._radiusButton = params.radiusButton != undefined ? params.radius : 5;
@@ -73,6 +72,19 @@
 		this._y            = this._container.height() / 2;
 		this._r            = this._w / 4;
 		this._surface      = new Raphael(this._dom, this._w, this._h);
+		this._values       = params.values ||new Array();
+		if(params.values == undefined){
+			for(var i = 0 ; i < this._labels.length ; i++){
+				this._values.push(2);
+			}
+		}
+		this._labelsId     = params.labelsID ||new Array();
+		if(params.labelsID == undefined){
+			for(var i = 0 ; i < this._labels.length ; i++){
+				this._labelsId.push(i);
+			}
+		}
+		
 		this.drawBG();
 	}
 
@@ -194,6 +206,7 @@
 						"stroke-width": 1
 					}
 				}).insertBefore(that._buttons[0]);
+				console.log(that.toJson());
 			}, function(x, y, e){ //start
 				this.animate({r: 10, opacity: 1}, 300, '>');
 			}, function(e){ //end
@@ -222,8 +235,16 @@
 		    }
 		});
 	};
-	jsp.values = function(){
-		return this._values; 
+	jsp.toJson = function(){
+		var res = [];
+		for(var i = 0 ; i < this._values.length ; i++){
+			res.push({
+				labelID: this._labelsId[i],
+				label: this._labels[i],
+				value: this._values[i]
+			});
+		}
+		return res; 
 	}
 	window.jSpider = jSpider;
 
