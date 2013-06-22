@@ -145,19 +145,6 @@
 			this.generateText();
 		}
 	};
-	jsp.update = function(){
-		this._editionPolygone.remove();
-		this._editionPolygone = this.generatePolygone({
-			coords: this.valuesToCoords(this._values),
-			opt: {
-				fill: "#0055FF",
-				opacity: 0.6,
-				stroke: "#FFFFFF",
-				"stroke-opacity": 1,
-				"stroke-width": 1
-			}
-		}).insertBefore(this._buttons[0]);
-	};
 	jsp.destroy = function(){
 		this._surface.remove();
 	};
