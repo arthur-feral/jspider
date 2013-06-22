@@ -70,6 +70,7 @@
 		this._margin       = params.margin;
 		this._x            = this._container.width() / 2;
 		this._y            = this._container.height() / 2;
+		// this._r         = params.radius != undefined ? params.radius : (this._container.width() - (2 * this._margin))/2;
 		this._r            = this._w / 4;
 		this._surface      = new Raphael(this._dom, this._w, this._h);
 		this._values       = params.values ||new Array();
@@ -93,7 +94,9 @@
 		var l = this._labels.length;
 		var chaine = "";
 		for(var i=0;i<l;i++){
+			// var r = typeof params.radius == "number" ? params.radius : params.radius[i];
 			if(i==0){chaine = chaine + "M"}else{chaine=chaine+"L"};
+			// chaine = chaine+(this._x + r *Math.cos(Math.PI/2+2*Math.PI*i/l))+" "+(this._y + r * Math.sin(Math.PI/2+2*Math.PI*i/l));
 			chaine += params.coords[i].x+" "+params.coords[i].y;
 		}
 		chaine = chaine + "z";
@@ -224,6 +227,7 @@
 			vals[i] /= this._max - this._min;
 		}
 		var coords = this.valuesToCoords(vals);
+
 		this.generatePolygone({
 			coords: coords,
 			opt: {
@@ -234,6 +238,9 @@
 		    	"stroke-width": 1
 		    }
 		});
+		for(var i = 0 ; i < l ; i++){
+			this._surface.circle(coords[i].x, coords[i].y, 2).attr({fill: '#ffffff', opacity: 1, stroke: "none"});
+		}
 	};
 	jsp.toJson = function(){
 		var res = [];
