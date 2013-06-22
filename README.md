@@ -1,4 +1,4 @@
-jspider
+jSpider2
 =======
 jSpider is a simple library using RaphaelJS allowing you to draw or read diagram for players stats.
 
@@ -36,3 +36,17 @@ myDiagram.read([1,2,2,4,1,4]);
 
 To create:
 myDiagram.startEdition();
+when you finnished edition, use myDiagram.toJson(); toJson will return an array containing yours statistics: 
+[ { label: "attaque" labelID: 0 value: 0.44117647058823534 },
+
+{ label: "dÃ©fense" labelID: 1 value: 2 },
+
+{ label: "endurance" labelID: 2 value: 4.071077524273835 },
+
+{ label: "technique" labelID: 3 value: 3.1862745098039214 },
+
+{ label: "physique" labelID: 4 value: 3.0635991476435565 },
+
+{ label: "fairplay" labelID: 5 value: 3.004964224961859 },
+
+]
